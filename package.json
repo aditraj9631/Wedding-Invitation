@@ -1,0 +1,14 @@
+{
+  "name": "aarti-rajan-wedding-invite",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.22.3",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}

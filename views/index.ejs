@@ -1,0 +1,100 @@
+<% var A = wedding.assets; %><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aarti &amp; Rajan — Wedding Invitation</title>
+  <meta name="description" content="You are invited to the wedding of Aarti Kumari and Rajan Thakur.">
+  <meta name="theme-color" content="#4a1f1f">
+  <% if (A.gate.mobile) { %>
+  <link rel="preload" as="image" href="<%= A.gate.desktop %>" media="(orientation: landscape)">
+  <link rel="preload" as="image" href="<%= A.gate.mobile %>" media="(orientation: portrait)">
+  <% } else { %>
+  <link rel="preload" as="image" href="<%= A.gate.desktop %>">
+  <% } %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- ===================== SECTION 1: OPENING SEQUENCE ===================== -->
+  <section id="opening" class="opening" aria-label="Wedding invitation opening">
+    <div class="opening__stage" id="stage" data-state="gate"<%- A.gate.mobile ? '' : ' data-gate-fallback' %>>
+
+      <!-- Step 1: the gate image (entire area is a button). Portrait screens get the mobile image when one exists. -->
+      <button type="button" class="opening__gate" id="gateBtn" aria-label="Tap to open the wedding invitation">
+        <picture>
+          <% if (A.gate.mobile) { %><source media="(orientation: portrait)" srcset="<%= A.gate.mobile %>"><% } %>
+          <img src="<%= A.gate.desktop %>" alt="An ornate golden heavenly gate surrounded by clouds with the words Tap to Open" class="opening__gate-img" fetchpriority="high" decoding="async">
+        </picture>
+        <span class="opening__pulse" aria-hidden="true"></span>
+      </button>
+
+      <!-- Step 2: the video. No file is requested until the gate is tapped; script.js then picks one source. -->
+      <div class="opening__video" id="videoWrap" aria-hidden="true">
+        <video id="invVideo" playsinline preload="none"
+               data-src-desktop="<%= A.video.desktop %>"<% if (A.video.mobile) { %> data-src-mobile="<%= A.video.mobile %>"<% } %>
+               data-poster-desktop="<%= A.gate.desktop %>"<% if (A.gate.mobile) { %> data-poster-mobile="<%= A.gate.mobile %>"<% } %>>
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-controls" id="videoControls">
+          <button type="button" id="soundBtn" class="pill" aria-pressed="false">Sound off</button>
+          <button type="button" id="skipBtn" class="pill">Skip</button>
+        </div>
+        <div class="video-error" id="videoError" role="alert" hidden>
+          <p>The video could not be played.</p>
+          <div>
+            <button type="button" id="retryBtn" class="pill pill--solid">Retry</button>
+            <button type="button" id="errSkipBtn" class="pill">Continue to invitation</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: the final invitation image (whole image visible, matches orientation) -->
+      <div class="opening__final" id="finalWrap" aria-hidden="true">
+        <picture>
+          <% if (A.final.mobile) { %><source media="(orientation: portrait)" srcset="<%= A.final.mobile %>"><% } %>
+          <img src="<%= A.final.desktop %>" alt="Wedding invitation: We are getting married. Aarti Kumari, daughter of Ramesh Kumar and Kiran Devi, and Rajan Thakur, son of Jai Thakur and Renu Thakur." class="opening__final-img" loading="lazy" decoding="async">
+        </picture>
+        <button type="button" class="pill replay" id="replayBtn">Replay video</button>
+      </div>
+
+      <a href="#welcome" class="scroll-cue" id="scrollCue" aria-label="Scroll to continue">
+        <span>Scroll to Continue</span>
+        <i aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <main>
+    <%- include('partials/welcome') %>
+    <%- include('partials/couple', { wedding }) %>
+    <%- include('partials/details', { wedding }) %>
+    <%- include('partials/story', { wedding }) %>
+    <%- include('partials/gallery', { wedding }) %>
+    <%- include('partials/events', { wedding }) %>
+    <%- include('partials/venue', { wedding }) %>
+    <%- include('partials/invitation', { wedding }) %>
+  </main>
+
+  <% if (wedding.music.available) { %>
+  <!-- One background song for the whole page (kept here, not in the partials) -->
+  <audio id="bgm" src="<%= wedding.music.src %>" loop preload="auto"></audio>
+  <div class="music" id="music" role="group" aria-label="Background music controls">
+    <button type="button" class="music__btn" id="musicToggle" aria-pressed="false" aria-label="Play background music">
+      <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+    </button>
+    <span class="music__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <button type="button" class="music__btn" id="musicMute" aria-pressed="false" aria-label="Mute background music">
+      <svg class="icon icon--vol" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <svg class="icon icon--muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <% } %>
+
+  <script src="/js/script.js" defer></script>
+</body>
+</html>

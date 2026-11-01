@@ -1,0 +1,36 @@
+<section id="rsvp" class="panel panel--brown" aria-labelledby="rsvpTitle">
+  <div class="container container--narrow reveal-group">
+    <p class="eyebrow reveal">WITH BLESSINGS</p>
+    <h2 id="rsvpTitle" class="heading reveal">Your Presence Is Our Blessing</h2>
+    <div class="divider reveal" aria-hidden="true"><span>&#10054;</span></div>
+    <p class="lead reveal">Family and friends, near and far, are warmly invited to bless the couple. Kindly let us know if you will be joining us.</p>
+
+    <% if (wedding.rsvpEnabled) { %>
+      <form class="rsvp reveal" method="post" action="/rsvp">
+        <p class="rsvp__thanks" id="rsvpThanks" role="status" hidden>Thank you! Your response has been received.</p>
+        <label>Your name
+          <input type="text" name="name" required autocomplete="name">
+        </label>
+        <label>Number of guests
+          <input type="number" name="guests" min="1" max="20" value="1" required>
+        </label>
+        <fieldset>
+          <legend>Will you attend?</legend>
+          <label class="radio"><input type="radio" name="attending" value="yes" checked> Joyfully accept</label>
+          <label class="radio"><input type="radio" name="attending" value="no"> Regretfully decline</label>
+        </fieldset>
+        <label>Blessings or message (optional)
+          <textarea name="message" rows="3"></textarea>
+        </label>
+        <button type="submit" class="btn">Send Response</button>
+      </form>
+    <% } %>
+
+    <p class="note reveal">For any queries: <%= wedding.contact %></p>
+
+    <footer class="foot reveal">
+      <p class="script script--sm">Aarti &amp; Rajan</p>
+      <p>With love and blessings from the families of<br>Ramesh Kumar &amp; Kiran Devi &nbsp;·&nbsp; Jai Thakur &amp; Renu Thakur</p>
+    </footer>
+  </div>
+</section>

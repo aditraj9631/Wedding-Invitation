@@ -1,0 +1,37 @@
+<section id="gallery" class="panel panel--wine" aria-labelledby="galleryTitle">
+  <div class="particles" aria-hidden="true"></div>
+  <div class="container container--wide reveal-group">
+    <p class="eyebrow reveal">MOMENTS</p>
+    <h2 id="galleryTitle" class="heading reveal">Wedding Gallery</h2>
+    <div class="divider reveal" aria-hidden="true"><span>&#10054;</span></div>
+
+    <ul class="gallery">
+      <% wedding.gallery.forEach(function (g) { %>
+        <li class="gallery__item reveal">
+          <% if (g.available) { %>
+            <button type="button" class="gallery__btn" data-lightbox data-full="<%= g.src %>" data-alt="<%= g.alt %>" data-caption="<%= g.caption %>" aria-label="Open photograph <%= g.number %> larger">
+              <img src="<%= g.src %>" alt="<%= g.alt %>" loading="lazy" decoding="async">
+              <% if (g.caption) { %><span class="gallery__cap"><%= g.caption %></span><% } %>
+            </button>
+          <% } else { %>
+            <div class="gallery__ph">
+              <span aria-hidden="true">&#10054;</span>
+              <strong>Photo placeholder <%= g.number %></strong>
+              <small>Add <%= g.expected %></small>
+            </div>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photograph viewer">
+    <button type="button" class="lightbox__close" id="lbClose" aria-label="Close">&times;</button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous photograph">&#8249;</button>
+    <figure class="lightbox__fig">
+      <img id="lbImg" alt="">
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+    <button type="button" class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next photograph">&#8250;</button>
+  </dialog>
+</section>

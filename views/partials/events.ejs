@@ -1,0 +1,38 @@
+<section id="events" class="panel panel--brown" aria-labelledby="eventsTitle">
+  <div class="container container--wide reveal-group">
+    <p class="eyebrow reveal">THE CELEBRATIONS</p>
+    <h2 id="eventsTitle" class="heading reveal">Join Us For Every Ceremony</h2>
+    <div class="divider reveal" aria-hidden="true"><span>&#10054;</span></div>
+
+    <div class="events">
+      <% wedding.events.forEach(function (ev, i) { %>
+        <article class="event reveal">
+          <figure class="event__media">
+            <% if (ev.imageUrl) { %>
+              <img src="<%= ev.imageUrl %>" alt="<%= ev.imageAlt %>" loading="lazy" decoding="async">
+            <% } else { %>
+              <div class="event__ph" role="img" aria-label="<%= ev.title %> photograph placeholder">
+                <span aria-hidden="true">&#10054;</span>
+                <small>Photograph coming soon</small>
+              </div>
+            <% } %>
+            <% if (ev.caption) { %><figcaption><%= ev.caption %></figcaption><% } %>
+          </figure>
+          <div class="event__body">
+            <h3><%= ev.title %></h3>
+            <p class="event__when">
+              <%= ev.date %><% if (ev.day) { %> &middot; <%= ev.day %><% } %><br>
+              <%= ev.time %><% if (ev.endTime) { %> &ndash; <%= ev.endTime %><% } %>
+            </p>
+            <p class="event__venue"><%= ev.venue %></p>
+            <p class="event__addr"><%= ev.address %></p>
+            <% if (ev.description) { %><p class="event__desc"><%= ev.description %></p><% } %>
+            <% if (ev.mapsUrl) { %>
+              <a class="btn btn--sm" href="<%= ev.mapsUrl %>" target="_blank" rel="noopener">Get Directions</a>
+            <% } %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>

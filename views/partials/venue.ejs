@@ -1,0 +1,42 @@
+<% var v = wedding.venue; %>
+<section id="venue" class="panel panel--wine" aria-labelledby="venueTitle">
+  <div class="particles" aria-hidden="true"></div>
+  <div class="container container--wide reveal-group">
+    <p class="eyebrow reveal">THE VENUE</p>
+    <h2 id="venueTitle" class="heading reveal">Where We Celebrate</h2>
+    <div class="divider reveal" aria-hidden="true"><span>&#10054;</span></div>
+
+    <div class="venue">
+      <div class="venue__info reveal">
+        <% if (v.photoUrl) { %>
+          <img class="venue__photo" src="<%= v.photoUrl %>" alt="Photograph of the venue<%= wedding.isPlaceholder(v.name) ? '' : ', ' + v.name %>" loading="lazy" decoding="async">
+        <% } %>
+        <h3 class="venue__name"><%= v.name %></h3>
+        <p class="venue__addr"><%= v.address %></p>
+        <% if (v.event) { %>
+          <p class="venue__when">
+            <span><%= v.event.title %></span><br>
+            <%= v.event.date %><% if (v.event.day) { %> &middot; <%= v.event.day %><% } %><br>
+            <%= v.event.time %><% if (v.event.endTime) { %> &ndash; <%= v.event.endTime %><% } %>
+          </p>
+        <% } %>
+        <% if (v.directionsUrl) { %>
+          <a class="btn" href="<%= v.directionsUrl %>" target="_blank" rel="noopener">Get Directions</a>
+        <% } else { %>
+          <p class="note">Directions will be added once the venue is confirmed.</p>
+        <% } %>
+      </div>
+
+      <div class="venue__map reveal">
+        <% if (v.embedUrl) { %>
+          <iframe src="<%= v.embedUrl %>" title="Map showing the wedding venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <% } else { %>
+          <div class="venue__map-ph">
+            <span aria-hidden="true">&#10054;</span>
+            <p>The map will appear here once the venue is confirmed.</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>

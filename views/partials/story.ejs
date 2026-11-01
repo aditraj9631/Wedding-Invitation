@@ -1,0 +1,21 @@
+<section id="story" class="panel panel--brown" aria-labelledby="storyTitle">
+  <div class="container reveal-group">
+    <p class="eyebrow reveal">HOW IT BEGAN</p>
+    <h2 id="storyTitle" class="heading reveal">Our Story</h2>
+    <div class="divider reveal" aria-hidden="true"><span>&#10054;</span></div>
+    <p class="lead reveal">Two families, one thoughtful beginning, and a journey we are grateful to share with you.</p>
+
+    <ol class="timeline">
+      <% wedding.story.forEach(function (s, i) { %>
+        <li class="timeline__item reveal">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <div class="timeline__card">
+            <p class="timeline__date"><%= s.date %></p>
+            <h3><%= s.title %></h3>
+            <p><%= s.text %></p>
+          </div>
+        </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>

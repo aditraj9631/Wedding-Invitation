@@ -1,0 +1,45 @@
+<%
+  // One heart outline (unit square) shared by the clip, the gold border and the scratch canvas.
+  var HEART = 'M.5,1 C.12,.70 0,.50 0,.30 C0,.13 .13,0 .28,0 C.38,0 .46,.05 .5,.14 C.54,.05 .62,0 .72,0 C.87,0 1,.13 1,.30 C1,.50 .88,.70 .5,1 Z';
+  var di = wedding.dateInfo;
+%>
+<section id="details" class="panel panel--wine" aria-labelledby="detailsTitle">
+  <div class="particles" aria-hidden="true"></div>
+  <div class="container container--narrow reveal-group">
+    <p class="eyebrow reveal">SAVE THE DATE</p>
+    <h2 id="detailsTitle" class="heading reveal">Our Wedding Date</h2>
+    <div class="divider reveal" aria-hidden="true"><span>&#10054;</span></div>
+    <p class="lead reveal">Gently scratch the golden heart to discover the day we begin our new life together.</p>
+
+    <svg class="sr-only" width="0" height="0" focusable="false" aria-hidden="true">
+      <defs>
+        <clipPath id="heartClip" clipPathUnits="objectBoundingBox"><path d="<%= HEART %>"/></clipPath>
+      </defs>
+    </svg>
+
+    <div class="heart-wrap reveal">
+      <div class="heart" id="heart" role="group" aria-label="Scratch card hiding the wedding date">
+        <div class="heart__inner">
+          <div class="heart__date" id="heartDate" tabindex="-1" aria-hidden="true">
+            <% if (di) { %>
+              <span class="heart__label">Save the Date</span>
+              <span class="heart__day"><%= di.weekday %></span>
+              <span class="heart__full"><%= di.long %></span>
+            <% } else { %>
+              <span class="heart__label">Save the Date</span>
+              <span class="heart__tba"><%= wedding.dateText %></span>
+            <% } %>
+          </div>
+          <canvas class="heart__canvas" id="scratchCanvas" data-path="<%= HEART %>" aria-hidden="true"></canvas>
+        </div>
+        <svg class="heart__outline" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
+          <path d="<%= HEART %>" fill="none" stroke="currentColor" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <p class="note reveal" id="scratchHint">Scratch with your finger or mouse, or use the button below.</p>
+    <button type="button" class="btn reveal" id="revealBtn">Reveal Date</button>
+    <p class="sr-only" id="dateLive" aria-live="polite"></p>
+  </div>
+</section>
