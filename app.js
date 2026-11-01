@@ -65,10 +65,10 @@ const wedding = {
 
   // The four ceremonies, in display order. Fields left as '' are simply hidden.
   events: [
-    { title: 'Matkor',   image: '/images/events/matkor.png',   date: '22/11/2026', day: 'Sunday', time: '7:00 PM', endTime: '', venue: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', address: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', caption: '[Event photo caption]', description: '[Event description]', mapsUrl: '' },
-    { title: 'Mehndi',   image: '/images/events/mehndi2026.png',   date: '23/11/2026', day: 'Monday', time: '7:00 PM', endTime: '', venue: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', address: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', caption: '[Event photo caption]', description: '[Event description]', mapsUrl: '' },
-    { title: 'Haldi',    image: '/images/events/haldi2026.png',    date: '24/11/2026', day: 'Tuesday', time: '10:00 Am', endTime: '', venue: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', address: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', caption: '[Event photo caption]', description: '[Event description]', mapsUrl: '' },
-    { title: 'Marriage', image: '/images/events/marraige2026.png', date: '24/11/2026', day: 'Tuesday', time: '10:00 PM', endTime: '', venue: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', address: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', caption: '[Event photo caption]', description: '[Event description]', mapsUrl: '' }
+    { title: 'Matkor',   image: '/images/events/matkor.png',   date: '22/11/2026', day: 'Sunday', time: '7:00 PM', endTime: '', venue: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', address: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', caption: '[Event photo caption]', description: '', mapsUrl: '' },
+    { title: 'Mehndi',   image: '/images/events/mehndi2026.png',   date: '23/11/2026', day: 'Monday', time: '7:00 PM', endTime: '', venue: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', address: 'Sai Vihar Colony Road NO. 1-D Jaganpura Patna', caption: '[Event photo caption]', description: '[', mapsUrl: '' },
+    { title: 'Haldi',    image: '/images/events/haldi2026.png',    date: '24/11/2026', day: 'Tuesday', time: '10:00 Am', endTime: '', venue: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', address: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', caption: '', description: '', mapsUrl: '' },
+    { title: 'Marriage', image: '/images/events/marraige2026.png', date: '24/11/2026', day: 'Tuesday', time: '10:00 PM', endTime: '', venue: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', address: 'Sita Ram Utsav Hall(Krisan Vihar Colony near Open Mind School)', caption: '', description: '', mapsUrl: '' }
   ],
 
   // Venue section. dateFromEvent pulls date/time from the event with that title.
