@@ -8,6 +8,7 @@ const PUBLIC_DIR = path.join(__dirname, 'public');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(PUBLIC_DIR, { maxAge: '7d' }));
 
 // ---------------------------------------------------------------------------
 // EDIT HERE: wedding details. Anything left as a placeholder is shown as such.
