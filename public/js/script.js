@@ -479,3 +479,46 @@
     if (t) t.hidden = false;
   }
 })();
+
+
+
+
+// ------------------------------------------------ STEP 3: JAVASCRIPT
+  // ===================== COUNTDOWN TIMER: JAVASCRIPT START (copy from here) =====================
+  // Counts DOWN to the date written in data-target on the element with id="cdt".
+  // This block works on its own, so it can be pasted anywhere inside script.js.
+  (function initCountdownTimer() {
+    var box = document.getElementById('cdt');
+    if (!box) return;
+    var target = new Date(box.getAttribute('data-target')).getTime();
+    if (isNaN(target)) return;
+
+    var daysEl = document.getElementById('cdt-days');
+    var hoursEl = document.getElementById('cdt-hours');
+    var minutesEl = document.getElementById('cdt-minutes');
+    var secondsEl = document.getElementById('cdt-seconds');
+    var doneEl = document.getElementById('cdt-done');
+    var row = box.querySelector('.cdt__row');
+    var timerId;
+
+    function two(n) { return String(n).padStart(2, '0'); }
+
+    function update() {
+      var diff = target - Date.now();            // milliseconds left
+      if (diff <= 0) {                           // date reached: stop and show the message
+        daysEl.textContent = '0';
+        hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = '00';
+        if (doneEl) doneEl.hidden = false;
+        if (row) row.hidden = true;
+        clearInterval(timerId);
+        return;
+      }
+      daysEl.textContent = Math.floor(diff / 86400000);
+      hoursEl.textContent = two(Math.floor(diff / 3600000) % 24);
+      minutesEl.textContent = two(Math.floor(diff / 60000) % 60);
+      secondsEl.textContent = two(Math.floor(diff / 1000) % 60);
+    }
+
+    update();
+    timerId = setInterval(update, 1000);         // refresh every second
+  })();

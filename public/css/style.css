@@ -549,3 +549,25 @@ button.btn { cursor: pointer; }
   .particles { display: none; }
   .heart.is-revealed .heart__date { opacity: 1; transform: none; filter: none; }
 }
+
+
+/* Timer css */
+
+.cdt { margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(217, 180, 91, .4); }
+.cdt__title {
+  margin: 0 0 1.2rem; font-family: var(--display); font-size: clamp(.85rem, 2.6vw, 1.1rem);
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold-soft);
+}
+.cdt__row { display: flex; justify-content: center; gap: clamp(.5rem, 2.5vw, 1.4rem); }
+.cdt__box {
+  flex: 1 1 0; max-width: 110px; min-width: 0; padding: .8rem .3rem;
+  border: 1px solid var(--gold); border-radius: 6px; background: rgba(0, 0, 0, .22);
+  box-shadow: 0 0 18px rgba(217, 180, 91, .12);
+}
+.cdt__box b {
+  display: block; font-family: var(--display); font-weight: 500; line-height: 1.1;
+  font-size: clamp(1.5rem, 6vw, 2.4rem); color: var(--gold-soft); font-variant-numeric: tabular-nums;
+}
+.cdt__box span { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.cdt__done { margin: 1.2rem 0 0; font-family: var(--script); font-size: clamp(2rem, 7vw, 3rem); color: var(--gold); }
+.cdt__done[hidden] { display: none; }
