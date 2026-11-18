@@ -596,3 +596,36 @@ if (document.readyState === "loading") {
 }
 
 // ================= COUNTDOWN TIMER END =================
+
+
+// Whatsapp response
+
+// ---------- RSVP via WhatsApp (only active when whatsappNumber is set in app.js) ----------
+(function initWhatsAppRsvp() {
+  var form = document.getElementById('rsvpForm');
+  if (!form || !form.getAttribute('data-whatsapp')) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = form.elements;
+    var name = f.name.value.trim();
+    var guests = f.guests.value;
+    var yes = form.querySelector('input[name="attending"]:checked').value === 'yes';
+    var note = f.message.value.trim();
+    var couple = form.getAttribute('data-couple') || '';
+
+    var lines = [
+      'Hello! This is ' + name + '.',
+      yes ? 'I will joyfully attend the wedding of ' + couple + '.'
+          : 'I regret that I am unable to attend the wedding of ' + couple + '.',
+      'Number of guests: ' + guests
+    ];
+    if (note) lines.push('Message: ' + note);
+    var url = 'https://wa.me/' + form.getAttribute('data-whatsapp') + '?text=' + encodeURIComponent(lines.join('\n'));
+
+    // Also keep the server-side log (same /rsvp endpoint as before)
+    try { navigator.sendBeacon('/rsvp', new URLSearchParams(new FormData(form))); } catch (err) {}
+
+    window.location.href = url;
+  });
+})();

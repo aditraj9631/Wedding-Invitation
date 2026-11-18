@@ -28,6 +28,7 @@ const wedding = {
   weddingDate: null,
   timeZone: 'Asia/Kolkata',
   dateText: '24th November 2026', // shown under the scratch layer when no date is set
+  
 
   // Opening sequence assets. Each entry is a list of candidate files; the first
   // one that exists in /public is used. The mobile (portrait) set is optional:
@@ -56,12 +57,12 @@ const wedding = {
   // Gallery - drop photos into /public/images/gallery/ and edit alt/caption.
   // Entries whose file does not exist are shown as labelled placeholders.
   gallery: [
-    { src: '/images/gallery/photo-1.png', alt: '[Describe photograph 1]', caption: '' },
+    { src: '/images/gallery/photo-1.jpeg', alt: '[Describe photograph 1]', caption: '' },
     { src: '/images/gallery/photo-2.png', alt: '[Describe photograph 2]', caption: '' },
     { src: '/images/gallery/photo-3.png', alt: '[Describe photograph 3]', caption: '' },
     { src: '/images/gallery/photo-4.png', alt: '[Describe photograph 4]', caption: '' },
     { src: '/images/gallery/photo-5.png', alt: '[Describe photograph 5]', caption: '' },
-    { src: '/images/gallery/photo-6.png', alt: '[Describe photograph 6]', caption: '' }
+    { src: '/images/gallery/photo-6.jpeg', alt: '[Describe photograph 6]', caption: '' }
   ],
 
   // The four ceremonies, in display order. Fields left as '' are simply hidden.
@@ -82,7 +83,8 @@ const wedding = {
   },
   mapUrl: 'https://maps.app.goo.gl/unvvwM8LXjM4Ht6F8',            // optional: Google Maps directions link for the venue
   contact: 'Ramesh Kumar 9631785504',
-  rsvpEnabled: true
+  rsvpEnabled: true,
+  whatsappNumber: '918521368991',
 };
 
 // ---------------------------------------------------------------------------
@@ -157,6 +159,11 @@ function buildView() {
   return Object.assign({}, wedding, {
     assets: { gate: resolvePair(a.gate), video: resolvePair(a.video), final: resolvePair(a.final) },
     music: { src: wedding.music.src, available: fileExists(wedding.music.src) },
+    
+        whatsapp: (function () {
+      const digits = String(wedding.whatsappNumber || '').replace(/\D/g, '');
+      return digits.length >= 8 && digits.length <= 15 ? digits : '';
+    })(),
     dateInfo: describeDate(wedding.weddingDate, wedding.timeZone),
     events,
     gallery,

@@ -6,7 +6,8 @@
     <p class="lead reveal">Family and friends, near and far, are warmly invited to bless the couple. Kindly let us know if you will be joining us.</p>
 
     <% if (wedding.rsvpEnabled) { %>
-      <form class="rsvp reveal" method="post" action="/rsvp">
+      <!-- <form class="rsvp reveal" method="post" action="/rsvp"> -->
+        <form class="rsvp reveal" id="rsvpForm" method="post" action="/rsvp"<% if (wedding.whatsapp) { %> data-whatsapp="<%= wedding.whatsapp %>" data-couple="<%= wedding.bride.name.split(' ')[0] %> &amp; <%= wedding.groom.name.split(' ')[0] %>"<% } %>>
         <p class="rsvp__thanks" id="rsvpThanks" role="status" hidden>Thank you! Your response has been received.</p>
         <label>Your name
           <input type="text" name="name" required autocomplete="name">
@@ -22,7 +23,11 @@
         <label>Blessings or message (optional)
           <textarea name="message" rows="3"></textarea>
         </label>
-        <button type="submit" class="btn">Send Response</button>
+        <!-- <button type="submit" class="btn">Send Response</button> -->
+        <% if (wedding.whatsapp) { %>
+          <button type="submit" class="btn">Send Response</button>
+  <p class="note rsvp__wa-note">This opens WhatsApp with your reply ready. Please press Send in WhatsApp to deliver it.</p>
+<% } %>
       </form>
     <% } %>
 
